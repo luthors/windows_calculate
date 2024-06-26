@@ -6,6 +6,7 @@ from main_app.model.alum_section import AlumSection
 from main_app.model.alum_artifact import AlumArtifact
 from main_app.model.alum_artifact_panel import AlumArtifactPanel
 from main_app.model.alum_system_description import AlumSystemDescription
+from main_app.model.alum_panel_section import AlumPanelSection
 
 class AlumSectionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -36,15 +37,16 @@ class AlumArtifactSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class AlumArtifactPanelSerializer(serializers.ModelSerializer):
-    
     def create(self, validated_data):
-        # validated_data['width'] = 
-        print('validated data', validated_data)
         return AlumArtifactPanel.objects.create(**validated_data)
     class Meta:
         model = AlumArtifactPanel
         fields = '__all__'
 
+class AlumPanelSectionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AlumPanelSection
+        fields = '__all__'
 
 
 

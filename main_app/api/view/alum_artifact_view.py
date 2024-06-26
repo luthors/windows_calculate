@@ -1,8 +1,11 @@
 from rest_framework.viewsets import ModelViewSet
+from main_app.api.view.alum_panel_section_view import AlumPanelSectionViewSet
 from main_app.model.alum_artifact import AlumArtifact
 from main_app.api.serializers import AlumArtifactPanelSerializer, AlumArtifactSerializer
 from rest_framework import status
 from rest_framework.response import Response
+
+from main_app.model.alum_artifact_panel import AlumArtifactPanel
 
 
 class AlumArtifactViewSet(ModelViewSet):
@@ -27,10 +30,9 @@ class AlumArtifactViewSet(ModelViewSet):
         alum_artifact= AlumArtifactSerializer(data=request.data)
         alum_artifact.is_valid(raise_exception=True)
         alum_artifact.save()
-        print('alum_artifact: ',  alum_artifact.data)
+        print('alum_artifact----: ',  alum_artifact.data)
         panel= {}
         for key, value in panels.items():
-            print('alum_artifact.id: ', alum_artifact.data['id'])
             panel['artifact_id'] = alum_artifact.data['id']
             panel['length'] = 0
             panel['amount_panel'] = value
@@ -46,14 +48,21 @@ class AlumArtifactViewSet(ModelViewSet):
                 panel['panel_type'] = 'DESLIZANTE'
             elif key == 'M':
                 panel['panel_type'] = 'MARCO'
-                
             panel['width'] = request.data['width']
             panel['height'] = request.data['height']
             panel_serializer = AlumArtifactPanelSerializer(data=panel)
             panel_serializer.is_valid(raise_exception=True)
-            panel_serializer.save()
-            print(key, value)
-        
+            panel_saved = panel_serializer.save()
+        query_alum_artifact_panel = AlumArtifactPanel.objects.filter(artifact_id=alum_artifact.data['id'])
+        for panel in query_alum_artifact_panel:
+            print('panel: ', panel)
+        print('query_alum_artifact_panel: ', query_alum_artifact_panel.values())
+        """ panel_saved_dict = panel_saved.__dict__
+        alum_panel_section_vista = AlumPanelSectionViewSet()
+        print('voy para la vista')
+        alum_panel_sections = {**dict(panel_saved_dict), 'system': alum_artifact.data['system_id']}
+        alum_panel_section_vista.create(alum_panel_sections, *args, **kwargs)
+        print('panel_saved_dict: ', panel_saved_dict) """
         return Response(data=alum_artifact.data, status= status.HTTP_201_CREATED)
 
         # artifact_id = 

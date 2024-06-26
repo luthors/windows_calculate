@@ -1,6 +1,7 @@
 from rest_framework import routers
 from main_app.api.view.alum_system_view import AlumSystemDescriptionViewSet
-from main_app.views import (AlumSystemViewSet, AlumLineViewSet, AlumSectionViewSet, AlumArtifactViewSet, AlumArtifactPanelViewSet)
+from main_app.views import (AlumSystemViewSet, AlumLineViewSet, AlumSectionViewSet, AlumArtifactViewSet, 
+                            AlumArtifactPanelViewSet, AlumPanelSectionViewSet)
 
 router = routers.SimpleRouter()
 
@@ -11,6 +12,7 @@ router.register(r'alumline', AlumLineViewSet, basename='alumline')
 router.register(r'alumsection', AlumSectionViewSet, basename='alumsection')
 router.register(r'alumartifact', AlumArtifactViewSet, basename='alumartifact')
 router.register(r'alumartifactpanel', AlumArtifactPanelViewSet, basename='alumartifactpanel')
+router.register(r'alumpanelsection', AlumPanelSectionViewSet, basename='alumpanelsection')
 
 
 # router.register(r'users', UserViewSet)
