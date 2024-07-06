@@ -11,3 +11,4 @@ class AlumArtifactPanel(models.Model):
     panel_type = models.CharField(max_length=20, choices= PANEL_TYPE)
     width = models.FloatField(default=0)
     height = models.FloatField(default=0)
+    

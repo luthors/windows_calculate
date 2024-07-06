@@ -10,6 +10,7 @@ class AlumArtifact(models.Model):
     height = models.FloatField(default=0)
     artifact_type = models.CharField(max_length=20, choices=ARTIFACT_TYPE)
     design = models.CharField(max_length=10,)
-    
-    
+    has_alfajia = models.BooleanField(default=False)
+    has_parche = models.BooleanField(default=False)
+        
     

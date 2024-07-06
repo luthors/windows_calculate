@@ -12,8 +12,7 @@ class AlumArtifactViewSet(ModelViewSet):
     model = AlumArtifact
     queryset = AlumArtifact.objects.all()
     serializer_class = AlumArtifactSerializer
-    fields = '__all__'
-    
+"""     
     def create(self, request, *args, **kwargs):
         print ('=========================================================================')
         design= request.data['design']
@@ -57,13 +56,7 @@ class AlumArtifactViewSet(ModelViewSet):
         for panel in query_alum_artifact_panel:
             print('panel: ', panel)
         print('query_alum_artifact_panel: ', query_alum_artifact_panel.values())
-        """ panel_saved_dict = panel_saved.__dict__
-        alum_panel_section_vista = AlumPanelSectionViewSet()
-        print('voy para la vista')
-        alum_panel_sections = {**dict(panel_saved_dict), 'system': alum_artifact.data['system_id']}
-        alum_panel_section_vista.create(alum_panel_sections, *args, **kwargs)
-        print('panel_saved_dict: ', panel_saved_dict) """
         return Response(data=alum_artifact.data, status= status.HTTP_201_CREATED)
-
+ """
         # artifact_id = 
         

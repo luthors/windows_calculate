@@ -1,5 +1,6 @@
 
 from rest_framework import serializers
+from main_app.api.services.AlumSystemService import AlumSystemService
 from main_app.model.alum_system import AlumSystem
 from main_app.model.alum_line import AlumLine
 from main_app.model.alum_section import AlumSection
@@ -18,13 +19,37 @@ class AlumSystemDescriptionSerializer(serializers.ModelSerializer):
         model = AlumSystemDescription
         fields = '__all__'
 
-class AlumSystemSerializer(serializers.ModelSerializer):
+""" class AlumSystemSerializer(serializers.ModelSerializer):
     sections = AlumSectionSerializer(many=True, read_only=True)
     descriptions = AlumSystemDescriptionSerializer(many=True, read_only=True)
     class Meta:
         model = AlumSystem
         fields = '__all__'
+ """
 
+class AlumSystemSerializer(serializers.ModelSerializer):
+    sections = AlumSectionSerializer(many=True, read_only=True)
+    alum_system_service: AlumSystemService = None
+    descriptions = AlumSystemDescriptionSerializer(many=True, read_only=True)
+    class Meta:
+        model = AlumSystem
+        fields = '__all__'
+""" 
+    def create(self, validated_data):
+        return self.alum_system_service.create_alum_system(validated_data)
+
+    def get_all(self):
+        return self.alum_system_service.get_all()
+    
+    def get_by_id(self, id):
+        return self.alum_system_service.get_by_id(id)
+    
+    def get_by_name(self, name):
+        #retornar varios registros
+        
+        return self.alum_system_service.get_by_name(name)
+
+ """
 class AlumLineSerializer(serializers.ModelSerializer):
     systems = AlumSystemSerializer(many=True, read_only=True)
     class Meta:
