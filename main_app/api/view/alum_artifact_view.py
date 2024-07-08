@@ -4,14 +4,18 @@ from main_app.model.alum_artifact import AlumArtifact
 from main_app.api.serializers import AlumArtifactPanelSerializer, AlumArtifactSerializer
 from rest_framework import status
 from rest_framework.response import Response
-
 from main_app.model.alum_artifact_panel import AlumArtifactPanel
+
 
 
 class AlumArtifactViewSet(ModelViewSet):
     model = AlumArtifact
     queryset = AlumArtifact.objects.all()
     serializer_class = AlumArtifactSerializer
+    
+    def create(self, request, *args, **kwargs):
+        
+    
 """     
     def create(self, request, *args, **kwargs):
         print ('=========================================================================')

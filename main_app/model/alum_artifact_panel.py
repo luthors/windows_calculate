@@ -2,8 +2,6 @@ from django.db import models
 from main_app.model.alum_artifact import AlumArtifact
 from main_app.model.enum.enums import PANEL_TYPE
 
-
-
 class AlumArtifactPanel(models.Model):
     artifact_id = models.ForeignKey(AlumArtifact, on_delete=models.CASCADE, related_name='panels')
     length = models.FloatField(default=0)

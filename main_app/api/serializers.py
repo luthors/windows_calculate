@@ -19,18 +19,11 @@ class AlumSystemDescriptionSerializer(serializers.ModelSerializer):
         model = AlumSystemDescription
         fields = '__all__'
 
-""" class AlumSystemSerializer(serializers.ModelSerializer):
-    sections = AlumSectionSerializer(many=True, read_only=True)
-    descriptions = AlumSystemDescriptionSerializer(many=True, read_only=True)
-    class Meta:
-        model = AlumSystem
-        fields = '__all__'
- """
-
 class AlumSystemSerializer(serializers.ModelSerializer):
-    sections = AlumSectionSerializer(many=True, read_only=True)
     alum_system_service: AlumSystemService = None
+    sections = AlumSectionSerializer(many=True, read_only=True)
     descriptions = AlumSystemDescriptionSerializer(many=True, read_only=True)
+    
     class Meta:
         model = AlumSystem
         fields = '__all__'
@@ -56,16 +49,16 @@ class AlumLineSerializer(serializers.ModelSerializer):
         model = AlumLine
         fields = '__all__'
 
-class AlumArtifactSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = AlumArtifact
-        fields = '__all__'
-
 class AlumArtifactPanelSerializer(serializers.ModelSerializer):
-    def create(self, validated_data):
-        return AlumArtifactPanel.objects.create(**validated_data)
+    
     class Meta:
         model = AlumArtifactPanel
+        fields = '__all__'
+
+class AlumArtifactSerializer(serializers.ModelSerializer):
+    panels = AlumArtifactPanelSerializer(many=True, read_only=True)
+    class Meta:
+        model = AlumArtifact
         fields = '__all__'
 
 class AlumPanelSectionSerializer(serializers.ModelSerializer):
