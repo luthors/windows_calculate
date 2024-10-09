@@ -10,6 +10,7 @@ ARTIFACT_TYPE = (
 PANEL_TYPE = (
     ('MOVIL', "Móvil"),
     ('FIJO', "Fijo"),
+    ('PARCHE', "Parche"),
     ('BATIENTE', "Batiente"),
     ('PROYECTANTE', "Proyectante"),
     ('DESLIZANTE', "Deslizante"),

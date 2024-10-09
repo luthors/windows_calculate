@@ -12,5 +12,5 @@ class AlumArtifact(models.Model):
     design = models.CharField(max_length=10, blank=False)
     has_alfajia = models.BooleanField(default=False, )
     has_parche = models.BooleanField(default=False, )
-        
+    has_adapter = models.BooleanField(default=False, )
     
